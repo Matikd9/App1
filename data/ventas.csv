@@ -1,0 +1,28 @@
+pizza_id,order_id,pizza_name_id,quantity,order_date,order_time,unit_price,total_price,pizza_size,pizza_category,pizza_ingredients,pizza_name
+1.00,1.00,hawaiian_m,1.00,1/1/2015,11:38:36,13.25,13.25,M,Classic,"Sliced Ham, Pineapple, Mozzarella Cheese",The Hawaiian Pizza
+2.00,2.00,classic_dlx_m,1.00,1/2/2015,11:57:40,16.00,16.00,M,Classic,"Pepperoni, Mushrooms, Red Onions, Red Peppers, Bacon",The Classic Deluxe Pizza
+3.00,2.00,five_cheese_l,1.00,1/2/2015,11:57:40,18.50,18.50,L,Veggie,"Mozzarella Cheese, Provolone Cheese, Smoked Gouda Cheese, Romano Cheese, Blue Cheese, Garlic",The Five Cheese Pizza
+4.00,3.00,pepperoni_xl,2.00,1/3/2015,12:15:22,20.00,40.00,XL,Classic,"Pepperoni, Mozzarella Cheese, Tomato Sauce",The Pepperoni Pizza
+5.00,4.00,bbq_chicken_l,1.00,1/3/2015,12:45:10,19.75,19.75,L,Specialty,"Grilled Chicken, BBQ Sauce, Red Onions, Cilantro, Mozzarella Cheese",The BBQ Chicken Pizza
+6.00,5.00,veggie_s,3.00,1/4/2015,13:10:05,12.00,36.00,S,Veggie,"Mushrooms, Green Peppers, Red Onions, Black Olives, Mozzarella Cheese, Tomato Sauce",The Veggie Pizza
+7.00,6.00,meat_lovers_m,1.00,1/4/2015,13:45:30,22.00,22.00,M,Specialty,"Pepperoni, Sausage, Bacon, Ham, Ground Beef, Mozzarella Cheese",The Meat Lovers Pizza
+8.00,7.00,margarita_m,2.00,1/5/2015,14:05:15,14.50,29.00,M,Classic,"Fresh Basil, Mozzarella Cheese, Tomato Sauce, Olive Oil",The Margarita Pizza
+9.00,8.00,white_garlic_xl,1.00,1/5/2015,14:25:50,21.25,21.25,XL,Specialty,"Garlic Sauce, Mozzarella Cheese, Ricotta Cheese, Parmesan Cheese, Spinach",The White Garlic Pizza
+10.00,9.00,supreme_l,1.00,1/6/2015,15:00:00,23.00,23.00,L,Classic,"Pepperoni, Sausage, Mushrooms, Green Peppers, Black Olives, Mozzarella Cheese, Tomato Sauce",The Supreme Pizza
+11.00,10.00,buffalo_chicken_m,2.00,1/6/2015,15:30:45,17.50,35.00,M,Specialty,"Grilled Chicken, Buffalo Sauce, Mozzarella Cheese, Red Onions, Blue Cheese Crumbles",The Buffalo Chicken Pizza
+12.00,11.00,mediterranean_l,1.00,1/7/2015,16:05:20,18.75,18.75,L,Veggie,"Feta Cheese, Kalamata Olives, Red Onions, Tomato Slices, Mozzarella Cheese, Olive Oil",The Mediterranean Pizza
+13.00,12.00,taco_pizza_xl,1.00,1/7/2015,16:30:10,22.50,22.50,XL,Specialty,"Ground Beef, Cheddar Cheese, Lettuce, Tomato, Sour Cream, Jalapenos",The Taco Pizza
+14.00,13.00,bacon_cheeseburger_m,2.00,1/8/2015,17:00:00,18.00,36.00,M,Specialty,"Ground Beef, Bacon, Cheddar Cheese, Mozzarella Cheese, Tomato Sauce",The Bacon Cheeseburger Pizza
+15.00,14.00,pesto_veggie_s,1.00,1/8/2015,17:25:40,14.25,14.25,S,Veggie,"Pesto Sauce, Mushrooms, Spinach, Sun-Dried Tomatoes, Mozzarella Cheese",The Pesto Veggie Pizza
+16.00,15.00,spicy_italian_l,1.00,1/9/2015,18:00:00,20.50,20.50,L,Classic,"Spicy Sausage, Pepperoni, Red Peppers, Mozzarella Cheese, Tomato Sauce",The Spicy Italian Pizza
+17.00,16.00,cheese_lovers_xl,2.00,1/9/2015,18:30:15,19.00,38.00,XL,Veggie,"Mozzarella Cheese, Cheddar Cheese, Parmesan Cheese, Ricotta Cheese, Tomato Sauce",The Cheese Lovers Pizza
+18.00,17.00,sicilian_m,1.00,1/10/2015,19:05:10,16.75,16.75,M,Classic,"Thick Crust, Mozzarella Cheese, Tomato Sauce, Italian Herbs",The Sicilian Pizza
+19.00,18.00,vegan_delight_s,2.00,1/10/2015,19:30:45,13.00,26.00,S,Veggie,"Dairy-Free Cheese, Mushrooms, Red Peppers, Spinach, Tomato Sauce",The Vegan Delight Pizza
+20.00,19.00,hawaiian_xl,1.00,1/11/2015,20:00:00,21.00,21.00,XL,Classic,"Sliced Ham, Pineapple, Mozzarella Cheese",The Hawaiian Pizza
+21.00,20.00,meat_supreme_l,1.00,1/11/2015,20:25:30,24.00,24.00,L,Specialty,"Pepperoni, Sausage, Bacon, Ham, Ground Beef, Mozzarella Cheese, Tomato Sauce",The Meat Supreme Pizza
+22.00,21.00,white_spinach_m,1.00,1/12/2015,20:55:40,15.75,15.75,M,Specialty,"White Sauce, Spinach, Garlic, Mozzarella Cheese, Ricotta Cheese",The White Spinach Pizza
+23.00,22.00,mexican_fiesta_xl,2.00,1/12/2015,21:30:10,23.50,47.00,XL,Specialty,"Chorizo, Jalapenos, Black Beans, Red Peppers, Cheddar Cheese, Mozzarella Cheese",The Mexican Fiesta Pizza
+24.00,23.00,greek_pizza_l,1.00,1/13/2015,22:00:00,18.25,18.25,L,Veggie,"Feta Cheese, Kalamata Olives, Red Onions, Tomato Slices, Mozzarella Cheese, Olive Oil",The Greek Pizza
+25.00,24.00,bbq_bacon_s,3.00,1/13/2015,22:30:25,15.00,45.00,S,Specialty,"BBQ Sauce, Bacon, Red Onions, Mozzarella Cheese, Cheddar Cheese",The BBQ Bacon Pizza
+26.00,25.00,pineapple_extravaganza_m,1.00,1/14/2015,23:00:00,16.50,16.50,M,Classic,"Extra Pineapple, Ham, Mozzarella Cheese, Tomato Sauce",The Pineapple Extravaganza Pizza
+27.00,26.00,italian_sausage_l,2.00,1/14/2015,23:30:45,19.25,38.50,L,Classic,"Italian Sausage, Red Onions, Green Peppers, Mozzarella Cheese, Tomato Sauce",The Italian Sausage Pizza
