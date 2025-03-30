@@ -3,49 +3,53 @@
 #include "metrics.h"
 #include <stdlib.h>
 #include <string.h>
+#include "orders.h"
 
-char datos[200][200][200];
-int filas,columnas;
-
-// Calcula promedio de pizzas por día
-double apd(const char *archivo){
-
-    leercsv(archivo,datos,&filas,&columnas);
+// Calcula el promedio de pizzas por día
+char *apd(int size, order *orders) {
     int contador = 0;
     int total_pizzas = 0;
-    
-    for(int i = 1;i<filas;i++){
-        total_pizzas += atoi(datos[i][3]);
-        if(i == 0 || strcmp(datos[i][4], datos[i - 1][4]) != 0){
+    static char resultado[100];  // Usar un buffer estático para almacenar el resultado
+
+    for (int i = 0; i < size; i++) {
+        total_pizzas += (int)orders[i].quantity;  // Convierte quantity a entero si es necesario
+
+        // Si el día cambia, contar una nueva entrada
+        if (i == 0 || strcmp(orders[i+1].order_date, orders[i].order_date) != 0) {
             contador++;
         }
     }
+
     if (contador > 0) {
         double promedio = (double) total_pizzas / contador;
-        return promedio;
+        sprintf(resultado, "resultado es %.9f, total pizzas: %d, contador: %i", promedio, total_pizzas, contador);
     } else {
-        printf("No hay datos suficientes para calcular el promedio.\n");
+        strcpy(resultado, "No hay datos suficientes.");
     }
+    return resultado;
 }
 
 
 // Calcula promedio de pizzas por orden
-double apo(const char *archivo){
-    leercsv(archivo,datos,&filas,&columnas);
-    
-    int cantidad_ordenes = 0;
+char *apo(int size, order *orders) {
+    int contador = 0;
     int total_pizzas = 0;
-    
-    for(int i = 1;i<filas;i++){
-        total_pizzas += atoi(datos[i][3]);
-        if(i == 0 || strcmp(datos[i][2], datos[i - 1][2]) != 0){
-            cantidad_ordenes++;
+    static char resultado[100];  // Usar un buffer estático para almacenar el resultado
+
+    for (int i = 0; i < size; i++) {
+        total_pizzas += (int)orders[i].quantity;  // Convierte quantity a entero si es necesario
+
+        // Si el día cambia, contar una nueva entrada
+        if (i == 0 ||orders[i+1].order_id !=  orders[i].order_id) {
+            contador++;
         }
     }
-    if (cantidad_ordenes > 0) {
-        double promedio = (double) total_pizzas / cantidad_ordenes;
-        return promedio;
+
+    if (contador > 0) {
+        double promedio = (double) total_pizzas / contador;
+        sprintf(resultado, "El promedio de pizzas por orden es: %.9f", promedio);
     } else {
-        printf("No hay datos suficientes para calcular el promedio.\n");
+        strcpy(resultado, "No hay datos suficientes.");
     }
+    return resultado;
 }
