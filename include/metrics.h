@@ -5,6 +5,7 @@
 
 char *apd(int size, order *orders);
 char *apo(int size, order *orders);
-
+char *dmsp(int size, order *orders);
+char *dlsp(int size, order *orders);
 
 #endif

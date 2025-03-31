@@ -16,6 +16,12 @@ int main() {
     char *resultadoo = apo(size, orders);
     printf("%s\n", resultadoo);
 
+    char *resultado2 = dmsp(size,orders);
+    printf("%s\n", resultado2);
+
+    char *resultado3 = dlsp(size,orders);
+    printf("%s", resultado3);
+
     free(orders);  
     return 0;
 }
