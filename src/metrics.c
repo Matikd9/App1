@@ -166,3 +166,105 @@ if (min_ventas == -1) {
 
     return resultado;
 }
+
+// Calcula la fecha con más dinero generado junto con la cantidad recaudada
+char *dms(int size, order *orders) {
+    int num_fechas = 0;
+    double ventas[200] = {0};  // almacenar  cantidad de dinero recaudado por fecha
+    char fechas[200][20]; 
+
+    static char resultado[500];  
+    resultado[0] = '\0';  
+
+    // Contar ventas por fecha en términos de dinero
+    for (int i = 0; i < size; i++) {
+        char *fecha_actual = orders[i].order_date;  
+        double cantidad = orders[i].total_price; 
+
+        // Buscar si la fecha ya existe 
+        int j;
+        for (j = 0; j < num_fechas; j++) {
+            if (strcmp(fechas[j], fecha_actual) == 0) {
+                ventas[j] += cantidad; 
+                break;
+            }
+        }
+
+        // Si no existe, se agrega
+        if (j == num_fechas && num_fechas < 200) {
+            strcpy(fechas[num_fechas], fecha_actual);
+            ventas[num_fechas] = cantidad;
+            num_fechas++;
+        }
+    }
+
+    // Encontrar la fecha con la mayor cantidad de dinero recaudado
+    int max_index = 0;
+    for (int i = 1; i < num_fechas; i++) {
+        if (ventas[i] > ventas[max_index]) {
+            max_index = i;  
+        }
+    }
+
+    // mostrar los resultados
+    sprintf(resultado, "La fecha con más ventas en términos de dinero fue %s con un total de $%.2f\n", 
+            fechas[max_index], ventas[max_index]);
+    
+    return resultado;
+}
+
+
+
+
+
+// Calcula la fecha con menos dinero generado junto con la cantidad recaudada
+char *dls(int size, order *orders) {
+    int num_fechas = 0;
+    double ventas[200] = {0};  // se  almacena la cantidad de dinero recaudado por fecha
+    char fechas[200][20]; 
+
+    static char resultado[500];  
+    resultado[0] = '\0';  
+
+    // Contar ventas por fecha en términos de dinero
+    for (int i = 0; i < size; i++) {
+        char *fecha_actual = orders[i].order_date;  
+        double cantidad = orders[i].total_price; 
+
+        // Buscar si la fecha ya existe 
+        int j;
+        for (j = 0; j < num_fechas; j++) {
+            if (strcmp(fechas[j], fecha_actual) == 0) {
+                ventas[j] += cantidad; 
+                break;
+            }
+        }
+
+        // Si no existe, agregarla
+        if (j == num_fechas && num_fechas < 200) {
+            strcpy(fechas[num_fechas], fecha_actual);
+            ventas[num_fechas] = cantidad;
+            num_fechas++;
+        }
+    }
+
+    // Encontrar la fecha con la menor cantidad de dinero recaudado (sin contar el  0)
+    int min_index = -1;
+    for (int i = 0; i < num_fechas; i++) {
+        if (ventas[i] > 0) { 
+            if (min_index == -1 || ventas[i] < ventas[min_index]) {
+                min_index = i;
+            }
+        }
+    }
+
+    // si es que no hay ventas mayores a 0 
+    if (min_index == -1) {
+        sprintf(resultado, "No hay ventas registradas.");
+    } else {
+        sprintf(resultado, "La fecha con menos ventas en términos de dinero fue %s con un total de $%.2f\n", 
+                fechas[min_index], ventas[min_index]);
+    }
+    
+    return resultado;
+}
