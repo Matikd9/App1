@@ -5,6 +5,100 @@
 #include <string.h>
 #include "orders.h"
 
+// Calcula pizza más vendida
+char *pms(int size, order *orders) {
+    float maximo = 0;
+    char nombres_agregados[2000] = "";
+    char pizzas_mas_vendidas[2000] = "";
+
+    // Paso 1: Encontrar el máximo de ventas por tipo de pizza
+    for (int i = 0; i < size; i++) {
+        float total = 0;
+        for (int j = 0; j < size; j++) {
+            if (strcmp(orders[i].pizza_name, orders[j].pizza_name) == 0) {
+                total += orders[j].quantity;
+            }
+        }
+        if (total > maximo) {
+            maximo = total;
+        }
+    }
+
+    // Paso 2: Agregar todas las pizzas con esa cantidad máxima (sin repetir)
+    for (int i = 0; i < size; i++) {
+        float total = 0;
+        for (int j = 0; j < size; j++) {
+            if (strcmp(orders[i].pizza_name, orders[j].pizza_name) == 0) {
+                total += orders[j].quantity;
+            }
+        }
+
+        if (total == maximo && strstr(nombres_agregados, orders[i].pizza_name) == NULL) {
+            strcat(pizzas_mas_vendidas, orders[i].pizza_name);
+            strcat(pizzas_mas_vendidas, "\n");
+            strcat(nombres_agregados, orders[i].pizza_name);
+            strcat(nombres_agregados, "|");
+        }
+    }
+
+    // Paso 3: Crear el mensaje final
+    char *mensaje_final = malloc(strlen(pizzas_mas_vendidas) + 100);
+    if (!mensaje_final) {
+        printf("Error al asignar memoria.\n");
+        exit(1);
+    }
+
+    sprintf(mensaje_final, "Pizza(s) más vendida(s) (%.0f unidades):\n%s", maximo, pizzas_mas_vendidas);
+    return mensaje_final;
+}
+
+// Calcula pizza menos vendida
+char *pls(int size, order *orders) {
+    float minimo = -1; // Inicializar con -1 para indicar que no se ha encontrado un mínimo aún
+    char nombres_agregados[2000] = "";
+    char pizzas_menos_vendidas_str[2000] = "";
+
+    // Paso 1: Encontrar el mínimo de ventas por tipo de pizza
+    for (int i = 0; i < size; i++) {
+        float total = 0;
+        for (int j = 0; j < size; j++) {
+            if (strcmp(orders[i].pizza_name, orders[j].pizza_name) == 0) {
+                total += orders[j].quantity;
+            }
+        }
+        if (total > 0 && (minimo == -1 || total < minimo)) {
+            minimo = total;
+        }
+    }
+
+    // Paso 2: Agregar todas las pizzas con esa cantidad mínima (sin repetir)
+    for (int i = 0; i < size; i++) {
+        float total = 0;
+        for (int j = 0; j < size; j++) {
+            if (strcmp(orders[i].pizza_name, orders[j].pizza_name) == 0) {
+                total += orders[j].quantity;
+            }
+        }
+
+        if (total == minimo && strstr(nombres_agregados, orders[i].pizza_name) == NULL) {
+            strcat(pizzas_menos_vendidas_str, orders[i].pizza_name);
+            strcat(pizzas_menos_vendidas_str, "\n");
+            strcat(nombres_agregados, orders[i].pizza_name);
+            strcat(nombres_agregados, "|");
+        }
+    }
+
+    // Paso 3: Crear el mensaje final
+    char *mensaje_final = malloc(strlen(pizzas_menos_vendidas_str) + 100);
+    if (!mensaje_final) {
+        printf("Error al asignar memoria.\n");
+        exit(1);
+    }
+
+    sprintf(mensaje_final, "Pizza(s) menos vendida(s) (%.0f unidades):\n%s", minimo, pizzas_menos_vendidas_str);
+    return mensaje_final;
+}
+
 // Calcula el promedio de pizzas por día
 char *apd(int size, order *orders) {
     int contador = 0;
@@ -28,7 +122,6 @@ char *apd(int size, order *orders) {
     }
     return resultado;
 }
-
 
 // Calcula promedio de pizzas por orden
 char *apo(int size, order *orders) {
@@ -105,7 +198,6 @@ char *dmsp(int size, order *orders) {
 
     return resultado;
 }
-
 
 //Fecha con menos ventas en términos de cantidad de pizzas (junto a la cantidad de pizzas)
 char *dlsp(int size, order *orders) {
