@@ -299,9 +299,14 @@ char *dms(int size, order *orders) {
     }
 
     // mostrar los resultados
-    sprintf(resultado, "La fecha con más ventas en términos de dinero fue %s con un total de $%.2f\n", 
-            fechas[max_index], ventas[max_index]);
-    
+    sprintf(resultado, "La(s) fecha(s) con más ventas en términos de dinero (%.2f) fueron: \n", ventas[max_index]);
+    for (int i = 0; i < num_fechas; i++){
+        if (ventas[i] == ventas[max_index]){
+            strcat(resultado, "- ");
+            strcat(resultado, fechas[i]);
+            strcat(resultado, "\n");
+        }
+    }
     return resultado;
 }
 
@@ -354,8 +359,14 @@ char *dls(int size, order *orders) {
     if (min_index == -1) {
         sprintf(resultado, "No hay ventas registradas.");
     } else {
-        sprintf(resultado, "La fecha con menos ventas en términos de dinero fue %s con un total de $%.2f\n", 
-                fechas[min_index], ventas[min_index]);
+        sprintf(resultado, "La(s) fecha(s) con menos ventas en términos de dinero (%.2f) fueron: \n", ventas[min_index]);
+        for (int i = 0; i < num_fechas; i++){
+            if (ventas[i] == ventas[min_index]){
+                strcat(resultado, "- ");
+                strcat(resultado, fechas[i]);
+                strcat(resultado, "\n");
+            }
+        }    
     }
     
     return resultado;
