@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "orders.h"
+#include "../include/orders.h"
 
 void structcsv(const char *filename, order **orders, int *size) {
     FILE *file = fopen(filename, "r");

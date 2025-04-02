@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "utils.h"
-#include "metrics.h"
+#include "utils.c"
+#include "orders.c"
+#include "metrics.c"
 
 int main(int argc,char *argv[]){
     int i;
