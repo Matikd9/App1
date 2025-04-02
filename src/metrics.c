@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "utils.h"
-#include "metrics.h"
+#include "../include/utils.h"
+#include "../include/metrics.h"
 #include <stdlib.h>
 #include <string.h>
-#include "orders.h"
+#include "../include/orders.h"
 
 // Calcula pizza más vendida
 char *pms(int size, order *orders) {
@@ -370,4 +370,113 @@ char *dls(int size, order *orders) {
     }
     
     return resultado;
+}
+
+#define MAX_CATEGORIAS 10
+#define MAX_INGREDIENTES 500
+#define MAX_STR 200
+
+// Estructura auxiliar para categorías
+typedef struct {
+    char nombre[MAX_STR];
+    int cantidad_de_pizzas;
+} Categoria;
+
+// Estructura para el resultado de categorías
+typedef struct {
+    Categoria categorias[MAX_CATEGORIAS];
+    int num_categorias;
+} ResultadoCategorias;
+
+// Estructura auxiliar para ingredientes
+typedef struct {
+    char nombre[MAX_STR];
+    int total;
+} Ingrediente;
+
+
+// funcion para contar pizzas por categoría
+
+ResultadoCategorias hp(int size, order *orders) {
+    ResultadoCategorias resultado;
+    resultado.num_categorias = 0;
+
+    for (int i = 0; i < size; i++) {
+        char *categoria = orders[i].pizza_category;
+        int cantidad = (int)orders[i].quantity;
+
+        if (strlen(categoria) == 0) continue;
+
+        // Buscar si ya existe
+        int encontrada = -1;
+        for (int j = 0; j < resultado.num_categorias; j++) {
+            if (strcmp(resultado.categorias[j].nombre, categoria) == 0) {
+                encontrada = j;
+                break;
+            }
+        }
+
+        if (encontrada == -1) {
+            // Agregar nueva categoría
+            strcpy(resultado.categorias[resultado.num_categorias].nombre, categoria);
+            resultado.categorias[resultado.num_categorias].cantidad_de_pizzas = cantidad;
+            resultado.num_categorias++;
+        } else {
+            // Acumular cantidad
+            resultado.categorias[encontrada].cantidad_de_pizzas += cantidad;
+        }
+    }
+
+    return resultado;
+}
+
+
+// funcion para encontrar ingrediente más vendido
+
+
+Ingrediente ims(int size, order *orders) {
+    Ingrediente ingredientes[MAX_INGREDIENTES];
+    int num_ingredientes = 0;
+
+    for (int i = 0; i < size; i++) {
+        int cantidad = (int)orders[i].quantity;
+        char buffer[MAX_STR];
+        strncpy(buffer, orders[i].pizza_ingredients, MAX_STR);
+
+        // Separar ingredientes por coma
+        char *token = strtok(buffer, ",");
+        while (token != NULL) {
+            while (*token == ' ') token++; // limpiar espacios
+
+            int encontrado = -1;
+            for (int j = 0; j < num_ingredientes; j++) {
+                if (strcmp(ingredientes[j].nombre, token) == 0) {
+                    encontrado = j;
+                    break;
+                }
+            }
+
+            if (encontrado == -1) {
+                // Nuevo ingrediente
+                strcpy(ingredientes[num_ingredientes].nombre, token);
+                ingredientes[num_ingredientes].total = cantidad;
+                num_ingredientes++;
+            } else {
+                // Ya existe, sumar cantidad
+                ingredientes[encontrado].total += cantidad;
+            }
+
+            token = strtok(NULL, ",");
+        }
+    }
+
+    // Buscar el ingrediente con mayor cantidad
+    Ingrediente top = ingredientes[0];
+    for (int i = 1; i < num_ingredientes; i++) {
+        if (ingredientes[i].total > top.total) {
+            top = ingredientes[i];
+        }
+    }
+
+    return top;
 }
