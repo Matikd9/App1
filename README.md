@@ -14,3 +14,5 @@
 
 ## **Make**
 - **Para correr el programa se debe ejecutar: make work**
+
+- **El archivo.csv debe ir en la carpeta data** 

@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Iinclude
-SRC = src/main.c src/metrics.c src/utils.c
+SRC = src/main.c src/metrics.c src/orders.c
 OUT = app1
 
 work:

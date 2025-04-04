@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "../src/orders.c"
-#include "../src/metrics.c"
+#include "orders.h"
+#include "metrics.h"
 
 int main() {
     order *orders = NULL;
@@ -10,27 +10,36 @@ int main() {
 
     structcsv("data/ventas.csv", &orders, &size);  
 
-    char *resultado1 = apd(size, orders);  
-    printf("%s\n", resultado1);
+    char *resultado0 = pms(&size, orders);
+    printf("%s", resultado0);
 
-    char *resultado2 = apo(size, orders);
-    printf("%s\n", resultado2);
+    char *resultadoo0 = pls(&size,orders);
+    printf("%s",resultadoo0);
 
-    char *resultado3 = dmsp(size,orders);
+    char *resultadoo1 =dms(&size,orders);
+    printf("%s", resultadoo1);
+
+    char *resultadoo2 =dls(&size,orders);
+    printf("%s", resultadoo2);
+
+    char *resultado3 = dmsp(&size,orders);
     printf("%s\n", resultado3);
 
-    char *resultado4 = dlsp(size,orders);
+    char *resultado4 = dlsp(&size,orders);
     printf("%s\n", resultado4);
+
+    char *resultado2 = apo(&size, orders);
+    printf("%s\n", resultado2);
+
+    char *resultado1 = apd(&size, orders);  
+    printf("%s\n", resultado1);
+
+    char *resultado6 =ims(&size,orders);
+    printf("%s", resultado6);
     
-    Ingrediente resultado5 = ims(size,orders);
-    printf("Ingrediente mas vendido: %s\n\n", resultado5.nombre);
+    char *resultado5 = hp(&size,orders);
+    printf("%s",resultado5);
 
-    ResultadoCategorias resultado_categorias = hp(size,orders);
-    printf("Nombre Categoría: Cantidad de Pizzas\n");
-
-    for (int i = 0; i < resultado_categorias.num_categorias; i++) {
-        printf("%s: %d\n", resultado_categorias.categorias[i].nombre, resultado_categorias.categorias[i].cantidad_de_pizzas);
-    }
 
     free(orders);  
     return 0;
